@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "RedHat";
+  src: url("/fonts/RedHatDisplay-Variable.ttf") format("truetype"); 
+}
+
+@font-face {
+  font-family: "RedHatItalic";
+  src: url("/fonts/RedHatDisplay-VariableItalic.ttf") format("truetype"); 
+}
+
+body{
+  font-family: "RedHat", sans-serif;
+}
