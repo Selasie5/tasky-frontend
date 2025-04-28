@@ -1,15 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import "tailwindcss";
 
-@font-face {
-  font-family: "RedHat";
-  src: url("/fonts/RedHatDisplay-Variable.ttf") format("truetype"); 
-}
 
-@font-face {
-  font-family: "RedHatItalic";
-  src: url("/fonts/RedHatDisplay-VariableItalic.ttf") format("truetype"); 
-}
 
 body{
-  font-family: "RedHat", sans-serif;
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.p
+{
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
 }
