@@ -12,7 +12,7 @@ export const InputField: React.FC<InputFieldProps> = ({ label, ...props }) => {
 
   return (
     <div className="flex flex-col mb-4">
-      <label htmlFor={props.id || props.name} className="mb-1 text-sm font-normal text-black">
+      <label htmlFor={props.id || props.name} className="mb-1 text-sm font-medium text-black">
         {label}
       </label>
       <input

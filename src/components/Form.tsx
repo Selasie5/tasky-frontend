@@ -10,7 +10,7 @@ interface FormWrapperProps<T extends FormikValues> {
   validationSchema: Yup.ObjectSchema<any>;
   onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<void>;
   children: React.ReactNode;
-  submitButtonText?: string;
+  submitButtonText?: string | React.ReactNode;
 }
 
 export function FormWrapper<T extends FormikValues>({

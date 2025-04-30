@@ -1,11 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Navigate } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <div>
-    
-  </div>
+  
+  return <Navigate to="/auth/login" replace />;
 }

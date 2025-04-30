@@ -10,12 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.13.8",
     "@tailwindcss/vite": "^4.1.4",
     "@tanstack/react-router": "^1.117.1",
     "@tanstack/react-router-devtools": "^1.117.1",
     "formik": "^2.4.6",
+    "graphql": "^16.11.0",
+    "lucide-react": "^0.503.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
+    "sonner": "^2.0.3",
     "tailwindcss": "^4.1.4",
     "yup": "^1.6.1"
   },
