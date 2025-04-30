@@ -43,15 +43,18 @@ const [input] = useState(initialValues);
      },
      onCompleted: (data) => {
        console.log('User registered successfully:', data);
-       reset();
-       navigate({ to: "/tasks" });  
+     
+       localStorage.setItem('tasky:auth:token',data.login.token)
+      localStorage.setItem('tasky:auth:user', JSON.stringify(data.login.user));
+      reset();
+       navigate({ to: "/tasks" })
      },
      onError: (error) => {
        console.error('Error registering user:', error);
        toast.error(
         <div className='text-red-500 text-sm font-medium'>
          <span>
-         Invalid email or password
+         Invalid email or password. Please check your credentials and try again
           </span> 
         </div>
         

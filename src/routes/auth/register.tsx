@@ -50,6 +50,8 @@ function RouteComponent() {
     onCompleted: (data) => {
       console.log('User registered successfully:', data);
       reset();
+      localStorage.setItem('tasky:auth:token', data.register.token);
+      localStorage.setItem('tasky:auth:user', JSON.stringify(data.register.user));
       navigate({ to: "/tasks" });  
     },
     onError: (error) => {
@@ -57,7 +59,7 @@ function RouteComponent() {
       toast.error(
         <div className='text-red-500 text-sm font-medium'>
          <span>
-         Invalid email or password
+         There was an error creating your account.Please try again.
           </span> 
         </div>
       )
@@ -84,7 +86,7 @@ function RouteComponent() {
     <main className="max-h-screen h-screen w-full flex flex-col items-center justify-center 
       bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('/login-bg.jpg')] bg-cover bg-no-repeat bg-center"
     >
-      <div className="w-1/4 md:w-2/5 lg:w-1/4 h-auto flex flex-col justify-center items-start bg-white rounded-md shadow-lg p-8">
+      <div className="w-1/4 md:w-1/2 lg:w-1/4 h-auto flex flex-col justify-center items-start bg-white rounded-md shadow-lg p-8">
         <div className="flex flex-col justify-center items-start mb-4">
           <h1 className="text-[22px] font-semibold">Register</h1>
           <p className="text-sm font-normal text-gray-500">Setup your account</p>

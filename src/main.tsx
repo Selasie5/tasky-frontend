@@ -7,6 +7,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import { routeTree } from './routeTree.gen'
 import { Toaster } from 'sonner'
+import { AuthProvider } from './context/authContext';
 
 const router = createRouter({ routeTree })
 declare module '@tanstack/react-router' {
@@ -24,9 +25,11 @@ declare module '@tanstack/react-router' {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <AuthProvider>
     <ApolloProvider client={client}>
     <RouterProvider router={router} />
-    <Toaster/>
+    <Toaster richColors expand={false} position="top-right"/>
     </ApolloProvider>
+    </AuthProvider>
   </StrictMode>,
 )
