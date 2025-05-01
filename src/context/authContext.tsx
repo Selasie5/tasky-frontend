@@ -11,6 +11,7 @@ from 'react'
 interface AuthContextType{
   isAuthenticated: boolean;
   username:string|null;
+  email:string | null;
   setUsername:(username:string| null)=>void;
   setEmail:(email:string| null)=>void;
   checkAuth:()=>void;
@@ -49,7 +50,7 @@ export const AuthProvider : React.FC<{ children: React.ReactNode }> = ({children
     checkAuth();
   },[])
   return (
-    <AuthContext.Provider value={{ isAuthenticated, username, setUsername, setEmail, checkAuth }}>
+    <AuthContext.Provider value={{ isAuthenticated, username, email,setUsername, setEmail, checkAuth }}>
       {children}
     </AuthContext.Provider>
   )
