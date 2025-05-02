@@ -1,7 +1,8 @@
 import { createFileRoute, Navigate } from '@tanstack/react-router'
 import { useAuth } from '../../context/authContext'
 import { useLocation } from '@tanstack/react-router';
-import { ClipboardList,LogOut } from 'lucide-react';
+import { ClipboardList,LogOut, ClipboardPlus} from 'lucide-react';
+import { greeting } from '../../utils/greeting';
 
 export const Route = createFileRoute('/tasks/')({
   component: RouteComponent,
@@ -11,14 +12,16 @@ function RouteComponent() {
   const location = useLocation();
   const pathName= location.pathname;
   const isActive = pathName === "/tasks";
+
+  greeting();
   return (
     isAuthenticated ? (
       <div className='flex flex-row items-center justify-center min-h-screen'>
         {/* Responsive Sidebar */}
         <div className='hidden md:flex flex-col justify-between items-start w-1/5 bg-white border-r border-r-gray-200 h-screen'>
         <div className='flex flex-col justify-start items-start w-full gap-5'>
-          <div className='w-full border-b border-b-gray-100'>
-            <div className='p-4'>
+          <div className='w-full border-b border-b-gray-200'>
+            <div className='p-7 max-h-lg min-h-lg'>
             <h1 className=' text-black font-semibold text-2xl logo'>tasky_</h1>
             </div>
                
@@ -51,22 +54,36 @@ function RouteComponent() {
             </div>
             <div className='flex justify-center items-center gap-2 w-full p-4'>
                 <img src="/user_5000.jpg" alt="profile-image" className='w-10 h-10 rounded-full' />
+                <div className="flex flex-col justify-center items-start">
                 <span className='text-sm font-medium text-gray-700'>{email}</span>
+                <span className='text-sm font-medium text-gray-500'>{username}</span>
+                </div>
             </div>
           </div>
         </div>
         {/* Main View */}
-        <div className='flex flex-col justify-center items-center w-full h-screen bg-gray-100/50'>
+        <div className='flex flex-col justify-start items-center w-full h-screen bg-gray-100/50'>
+        <div className='flex justify-between items-center w-full p-5 bg-white border-b border-b-gray-200'>
+        <div className='flex flex-col justify-start items-start '>
+          <h1 className='text-xl font-semibold text-black uppercase'>{greeting()}, {username}</h1>
+          <p className='text-sm text-gray-400'>These are your tasks, get them done</p>
+        </div>
+        <div>
+          <button className='text-md text-purple-800 font-semibold flex justify-center items-start gap-2 bg-purple-600/50 hover:bg-purple-800  hover:text-white hover:cursor-pointer rounded-md px-4 py-3 group'>
+            <ClipboardPlus className='text-purple-800 group-hover:text-white'  />
+            <span className='font-medium '>Create Task</span>
+          </button>
+        </div>
           </div>
-        {/* <h1 className='text-3xl font-bold'>Welcome to Tasky</h1>
-        <p className='text-lg mt-4'>Hello {username}, you are logged in!</p>
-        <button onClick={() => {
-          localStorage.removeItem('tasky:auth:token');
-          localStorage.removeItem('tasky:auth:user');
-          setUsername(null);
-          setEmail(null);
-          checkAuth();
-        }} className='mt-4 bg-red-500 text-white px-4 py-2 rounded'>Logout</button> */}
+       
+        <div className='flex flex-col justify-start items-start w-full mt-4'>
+              <div className='flex justify-start items-start w-full'>
+                <div className='flex justify-between items-center '>
+                
+                </div>
+              </div>
+        </div>
+          </div>
       </div>
     ) : (
       <Navigate
