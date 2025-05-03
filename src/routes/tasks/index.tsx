@@ -1,8 +1,11 @@
 import { createFileRoute, Navigate } from '@tanstack/react-router'
+import { useState } from 'react';
 import { useAuth } from '../../context/authContext'
 import { useLocation } from '@tanstack/react-router';
-import { ClipboardList,LogOut, ClipboardPlus} from 'lucide-react';
+import { ClipboardList,LogOut,PlusIcon} from 'lucide-react';
 import { greeting } from '../../utils/greeting';
+import Search from '../../components/core/Search';
+import FilterSelect from '../../components/core/FilterSelect';
 
 export const Route = createFileRoute('/tasks/')({
   component: RouteComponent,
@@ -12,6 +15,11 @@ function RouteComponent() {
   const location = useLocation();
   const pathName= location.pathname;
   const isActive = pathName === "/tasks";
+
+  const [searchParams, setSearchParams] = useState<string>("");
+  const [filterParams, setFilterParams] = useState<string>("");
+  const [sortParams, setSortParams] = useState<string>("");
+  const [sortOrder, setSortOrder] = useState<string>("asc");
 
   greeting();
   return (
@@ -27,7 +35,7 @@ function RouteComponent() {
                
           </div>
           <div className='flex flex-col justify-start items-start w-full gap-5 p-2'>
-            <div className={`flex flex-row justify-start items-center gap-2 w-full p-3  rounded-sm rounded-tl-none rounded-bl-none ${isActive ? 'text-purple-800 bg-purple-300 border-l-3 border-l-pruple-800' : 'text-gray-500'}`}>
+            <div className={`flex flex-row justify-start items-center gap-2 w-full p-3  rounded-xs rounded-tl-none rounded-bl-none ${isActive ? 'text-purple-800 bg-purple-300 border-l-3 border-l-pruple-800' : 'text-gray-500'}`}>
              <ClipboardList className='text-purple-800' />
               <span className='text-lg font-medium'>Tasks</span>
             </div>
@@ -69,17 +77,23 @@ function RouteComponent() {
           <p className='text-sm text-gray-400'>These are your tasks, get them done</p>
         </div>
         <div>
-          <button className='text-md text-purple-800 font-semibold flex justify-center items-start gap-2 bg-purple-600/50 hover:bg-purple-800  hover:text-white hover:cursor-pointer rounded-md px-4 py-3 group'>
-            <ClipboardPlus className='text-purple-800 group-hover:text-white'  />
-            <span className='font-medium '>Create Task</span>
+          <button className='text-md text-white font-medium flex justify-center items-start gap-2 bg-purple-600/50 hover:bg-purple-800  hover:text-white hover:cursor-pointer hover:font-semibold rounded-xs p-3 group'>
+            <PlusIcon className='text-white '  />
+            <span className='font-medium'>Create Task</span>
           </button>
         </div>
           </div>
        
-        <div className='flex flex-col justify-start items-start w-full mt-4'>
+        <div className='flex flex-col justify-start items-start w-full mt-4 p-4'>
               <div className='flex justify-start items-start w-full'>
-                <div className='flex justify-between items-center '>
-                
+                <div className='flex justify-between items-center w-full'>
+                <Search 
+                  searchParams={searchParams} 
+                  onSearch={(query: string) => setSearchParams(query)} 
+                />
+                <div className='flex justify-between items-center w-auto'>
+                <FilterSelect options={["Active", "Pending", "Completed"]} value={filterParams} placeholder='Filter By Status' onChange={(filterParams)=>setFilterParams(filterParams)}/>
+                </div>
                 </div>
               </div>
         </div>
