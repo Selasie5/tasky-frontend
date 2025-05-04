@@ -6,6 +6,7 @@ import { ClipboardList,LogOut,PlusIcon} from 'lucide-react';
 import { greeting } from '../../utils/greeting';
 import Search from '../../components/core/Search';
 import FilterSelect from '../../components/core/FilterSelect';
+import Table from '../../components/Table';
 
 export const Route = createFileRoute('/tasks/')({
   component: RouteComponent,
@@ -18,8 +19,8 @@ function RouteComponent() {
 
   const [searchParams, setSearchParams] = useState<string>("");
   const [filterParams, setFilterParams] = useState<string>("");
-  const [sortParams, setSortParams] = useState<string>("");
-  const [sortOrder, setSortOrder] = useState<string>("asc");
+  // const [sortParams, setSortParams] = useState<string>("");
+  // const [sortOrder, setSortOrder] = useState<string>("asc");
 
   greeting();
   return (
@@ -84,7 +85,7 @@ function RouteComponent() {
         </div>
           </div>
        
-        <div className='flex flex-col justify-start items-start w-full mt-4 p-4'>
+        <div className='flex flex-col justify-start items-start w-full mt-4 p-4 gap-8'>
               <div className='flex justify-start items-start w-full'>
                 <div className='flex justify-between items-center w-full'>
                 <Search 
@@ -96,8 +97,10 @@ function RouteComponent() {
                 </div>
                 </div>
               </div>
+              <Table/>
         </div>
           </div>
+          
       </div>
     ) : (
       <Navigate
